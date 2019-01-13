@@ -54,6 +54,19 @@ public class Board {
 
     }
 
+    private boolean isBoardFull() {
+        boolean boardFull = true;
+        for (int col = 0; col < 3; col++) {
+            for (int row = 0; row < 3; row++) {
+                if (isSquareAvailable(row, col)) {
+                    boardFull = false;
+                    break;
+                }
+            }
+        }
+        return boardFull;
+    }
+
 
     private boolean isSquareAvailable(int row, int col){
         return (board[row][col] != Player.X && board[row][col] != Player.O);
