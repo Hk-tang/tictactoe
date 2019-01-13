@@ -46,6 +46,9 @@ public class Board {
 
             if (hasWon(row, col))
                 winner = currentPlayer;
+            else if (isBoardFull()) {
+                winner = Player.NONE;
+            }
             else if(currentPlayer == Player.X)
                 currentPlayer = Player.O;
             else
