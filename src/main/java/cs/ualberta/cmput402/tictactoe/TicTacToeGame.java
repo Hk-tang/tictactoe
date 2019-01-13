@@ -53,10 +53,10 @@ public class TicTacToeGame {
     }
     
     private Boolean checkResponse(String response) throws InvalidResponseException {
-        switch(response.trim().toLowerCase()){
-            case "y":
+        switch(response.trim().toLowerCase().charAt(0)){
+            case 'y':
                 return true;
-            case "n":
+            case 'n':
                 return false;
             default:
                 throw new InvalidResponseException("Invalid character provided!");
