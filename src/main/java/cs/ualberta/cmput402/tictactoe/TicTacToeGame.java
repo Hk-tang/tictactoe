@@ -14,6 +14,10 @@ public class TicTacToeGame {
 
     private Board board;
     private Boolean playing;
+    private Integer oScore = 0; //Overall score for player O
+    private Integer xScore = 0; //Overall score for player X
+    private Integer dScore = 0; //Number of games resulting in draw
+
     
     public TicTacToeGame(){
         board = new Board();
@@ -50,8 +54,29 @@ public class TicTacToeGame {
 
         board.printBoard();
         System.out.println("Player " + board.getWinner() + " has won the game!\n");
+        calcScoreBoard(board.getWinner());
+        printScoreBoard();
     }
-    
+
+    public void printScoreBoard(){
+        System.out.println("--------------------------------");
+        System.out.println("| X-wins: "+xScore+" O-wins: "+oScore+" Draws: "+dScore+" |");
+        System.out.println("| X-loss: "+oScore+" O-loss: "+xScore+" |");
+        System.out.println("--------------------------------");
+    }
+
+    public void calcScoreBoard(Board.Player winner){
+        if(winner == Player.O){
+            oScore++;
+        }
+        else if(winner == Player.X){
+            xScore++;
+        }
+        else{
+            dScore++;
+        }
+    }
+
     private Boolean checkResponse(String response) throws InvalidResponseException {
         switch(response.trim().toLowerCase().charAt(0)){
             case 'y':
