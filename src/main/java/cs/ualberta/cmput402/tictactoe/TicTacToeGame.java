@@ -14,9 +14,9 @@ public class TicTacToeGame {
 
     private Board board;
     private Boolean playing;
-    private Integer oScore = 0; //Overall score for player O
-    private Integer xScore = 0; //Overall score for player X
-    private Integer dScore = 0; //Number of games resulting in draw
+    private Integer oWins = 0; //Overall wins for player O
+    private Integer xWins = 0; //Overall wins for player X
+    private Integer ties = 0; //Number of games resulting in ties
 
     
     public TicTacToeGame(){
@@ -60,20 +60,20 @@ public class TicTacToeGame {
 
     public void printScoreBoard(){
         System.out.println("--------------------------------");
-        System.out.println("| X-wins: "+xScore+" O-wins: "+oScore+" Draws: "+dScore+" |");
-        System.out.println("| X-loss: "+oScore+" O-loss: "+xScore+" |");
+        System.out.println("| X-wins: "+xWins+" O-wins: "+oWins+" Draws: "+ties+" |");
+        System.out.println("| X-loss: "+oWins+" O-loss: "+xWins+" |");
         System.out.println("--------------------------------");
     }
 
     public void calcScoreBoard(Board.Player winner){
         if(winner == Player.O){
-            oScore++;
+            oWins++;
         }
         else if(winner == Player.X){
-            xScore++;
+            xWins++;
         }
         else{
-            dScore++;
+            ties++;
         }
     }
 
