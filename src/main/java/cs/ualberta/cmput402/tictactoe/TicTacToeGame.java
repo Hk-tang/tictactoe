@@ -3,6 +3,7 @@ package cs.ualberta.cmput402.tictactoe;
 import cs.ualberta.cmput402.tictactoe.board.Board;
 import cs.ualberta.cmput402.tictactoe.board.Board.Player;
 import cs.ualberta.cmput402.tictactoe.board.exceptions.InvalidMoveException;
+import cs.ualberta.cmput402.tictactoe.board.exceptions.InvalidResponseException;
 
 import java.util.Scanner;
 
@@ -12,9 +13,11 @@ import java.util.Scanner;
 public class TicTacToeGame {
 
     private Board board;
-
+    private Boolean playing;
+    
     public TicTacToeGame(){
         board = new Board();
+        playing = true;    
     }
 
     public void promptNextPlayer(){
@@ -46,11 +49,38 @@ public class TicTacToeGame {
         }
 
         board.printBoard();
-        System.out.println("Player " + board.getWinner() + " has won the game!");
+        System.out.println("Player " + board.getWinner() + " has won the game!\n");
+    }
+    
+    private Boolean checkResponse(String response) throws InvalidResponseException {
+        switch(response.trim().toLowerCase().charAt(0)){
+            case 'y':
+                return true;
+            case 'n':
+                return false;
+            default:
+                throw new InvalidResponseException("Invalid character provided!");
+            }
     }
 
     public static void main(String args[]){
         TicTacToeGame game = new TicTacToeGame();
-        game.playGame();
+        Scanner keyboardScanner = new Scanner(System.in);
+
+        while (game.playing){
+            game.board = new Board();
+            game.playGame();            
+            while (true){
+                System.out.println("Would you like to play again? (Y/N):");                        
+                String response = keyboardScanner.nextLine();
+                try {
+                    game.playing = game.checkResponse(response);
+                    break;       
+                } catch (InvalidResponseException e) {
+                    System.out.println("Invalid selection. Please try again"); 
+                }
+            }
+            
+        }
     }
 }
