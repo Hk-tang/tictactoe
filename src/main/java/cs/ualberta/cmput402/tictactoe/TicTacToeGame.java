@@ -49,7 +49,11 @@ public class TicTacToeGame {
         }
 
         board.printBoard();
-        System.out.println("Player " + board.getWinner() + " has won the game!\n");
+        if (board.getWinner() == Player.NONE) {
+            System.out.println("It is a tie!\n");
+        } else {
+            System.out.println("Player " + board.getWinner() + " has won the game!\n");
+        }
     }
     
     private Boolean checkResponse(String response) throws InvalidResponseException {

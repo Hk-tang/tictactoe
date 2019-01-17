@@ -46,12 +46,28 @@ public class Board {
 
             if (hasWon(row, col))
                 winner = currentPlayer;
+            else if (isBoardFull()) {
+                winner = Player.NONE;
+            }
             else if(currentPlayer == Player.X)
                 currentPlayer = Player.O;
             else
                 currentPlayer = Player.X;
         }
 
+    }
+
+    private boolean isBoardFull() {
+        boolean boardFull = true;
+        for (int col = 0; col < 3; col++) {
+            for (int row = 0; row < 3; row++) {
+                if (isSquareAvailable(row, col)) {
+                    boardFull = false;
+                    break;
+                }
+            }
+        }
+        return boardFull;
     }
 
 
