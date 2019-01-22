@@ -53,7 +53,6 @@ public class TicTacToeGame {
         }
 
         board.printBoard();
-//        System.out.println("Player " + board.getWinner() + " has won the game!\n");
         calcScoreBoard(board.getWinner());
         printScoreBoard();
 
