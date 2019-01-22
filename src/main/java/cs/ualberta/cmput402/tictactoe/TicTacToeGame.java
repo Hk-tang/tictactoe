@@ -85,6 +85,10 @@ public class TicTacToeGame {
     }
 
     private Boolean checkResponse(String response) throws InvalidResponseException {
+        if (response.trim().length() > 1){
+            throw new InvalidResponseException("Response string too  long");
+        }
+        
         switch(response.trim().toLowerCase().charAt(0)){
             case 'y':
                 return true;
