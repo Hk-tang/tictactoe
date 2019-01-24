@@ -14,14 +14,17 @@ public class TicTacToeGame {
 
     private Board board;
     private Boolean playing;
-    private Integer oWins = 0; //Overall wins for player O
-    private Integer xWins = 0; //Overall wins for player X
-    private Integer ties = 0; //Number of games resulting in ties
+    private Integer oWins; //Overall wins for player O
+    private Integer xWins; //Overall wins for player X
+    private Integer ties; //Number of games resulting in ties
 
     
     public TicTacToeGame(){
         board = new Board();
-        playing = true;    
+        playing = true;   
+        oWins = 0; //Initialize scores to be zero
+        xWins = 0;
+        ties = 0;
     }
 
     public void promptNextPlayer(){
